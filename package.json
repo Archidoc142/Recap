@@ -23,6 +23,7 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
-        "@inertiajs/react": "^2.0.17"
+        "@inertiajs/react": "^2.0.17",
+        "gsap": "^3.13.0"
     }
 }
