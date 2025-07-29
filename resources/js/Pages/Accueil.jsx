@@ -1,8 +1,10 @@
+import { Head } from "@inertiajs/react";
+
 export default function Accueil() {
     return (
         <div>
-            <h1 className="text-9xl">Bienvenue sur la page d'accueil</h1>
-            <p>Ceci est le contenu de la page d'accueil.</p>
+            <Head title="Accueil" />
+            <h1 className="text-2xl text-gray-600">Biologie</h1>
         </div>
     );
 }

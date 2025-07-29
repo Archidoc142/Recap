@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->integer('point')->default(0);
+            $table->boolean('light_mode')->default(false);
+            $table->bigInteger('id_icon')->unsigned()->nullable();
+            $table->bigInteger('id_role')->unsigned()->default(1)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -34,6 +38,11 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('id_icon')->references('id')->on('icon')->nullOnDelete();
+            $table->foreign('id_role')->references('id')->on('role')->nullOnDelete();
         });
     }
 

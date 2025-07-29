@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'lexend';
+    src: url('../fonts/Lexend-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'source';
+    src: url('../fonts/SourceSans3-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'lato';
+    src: url('../fonts/Lato-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #000;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #a9a9a9;
+}
+
+h1,
+h2,
+.lexend {
+    font-family: 'lexend';
+}
+
+h3,
+h4,
+h5,
+h6,
+.source {
+    font-family: 'source';
+    line-height: 24px;
+}
+
+p,
+.lato {
+    font-family: 'lato';
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unselectable,
+img {
+    user-select: none;
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
