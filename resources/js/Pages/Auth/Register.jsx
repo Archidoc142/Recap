@@ -91,12 +91,12 @@ export default function Register() {
 
 
                 <div className="mt-8 flex flex-col items-center justify-end gap-16">
-                    <PrimaryButton className="bg-transparent border-[3px] py-3 px-6 !text-[16px] border-[#5a5a5c] rounded-none" disabled={processing}>
+                    <PrimaryButton className="border-[3px] py-3 px-6 !text-[16px] border-[#5a5a5c] rounded-none" disabled={processing}>
                         CRÉER UN COMPTE
                     </PrimaryButton>
 
 
-                    <p>Vous avez déjà un compte? <span className='font-bold text-[#ff5e00] hover:text-white transition-colors duration-300'><Link href={route('login')}>SE CONNECTER</Link></span></p>
+                    <p>Vous avez déjà un compte? <span className='font-bold text-[#2545af] hover:text-white transition-colors duration-300'><Link href={route('login')}>SE CONNECTER</Link></span></p>
                 </div>
             </form>
         </div>

@@ -13,18 +13,18 @@ class MatiereSeeder extends Seeder
     public function run(): void
     {
         DB::table('matiere')->insert([
-            ['nom' => 'Mathématiques'],
-            ['nom' => 'Informatique'],
-            ['nom' => 'Biologie'],
-            ['nom' => 'Physique'],
-            ['nom' => 'Chimie'],
-            ['nom' => 'Histoire'],
-            ['nom' => 'Géographie'],
-            ['nom' => 'Philosophie'],
-            ['nom' => 'Langues'],
-            ['nom' => 'Astronomie'],
-            ['nom' => 'Environnement'],
-            ['nom' => 'Alimentation']
+            ['title' => 'Mathématiques'],
+            ['title' => 'Informatique'],
+            ['title' => 'Biologie'],
+            ['title' => 'Physique'],
+            ['title' => 'Chimie'],
+            ['title' => 'Histoire'],
+            ['title' => 'Géographie'],
+            ['title' => 'Philosophie'],
+            ['title' => 'Langues'],
+            ['title' => 'Astronomie'],
+            ['title' => 'Environnement'],
+            ['title' => 'Alimentation']
         ]);
     }
 }

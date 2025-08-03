@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('matiere', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('title');
             $table->string('couleur', 7)->default('#000000');
             $table->timestamps();
         });

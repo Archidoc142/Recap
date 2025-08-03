@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('chapitre', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('title');
             $table->bigInteger('id_cours')->unsigned()->nullable();
             $table->timestamps();
         });

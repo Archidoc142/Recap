@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cours', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('title');
             $table->bigInteger('id_matiere')->unsigned()->nullable();
             $table->bigInteger('id_icon')->unsigned()->nullable();
             $table->timestamps();

@@ -10,7 +10,7 @@ class Matiere extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [
-        'nom',
+        'title',
         'couleur',
     ];
 }

@@ -13,19 +13,28 @@ export default function DefaultLayout({ children }) {
     const [leftNav, setLeftNav] = useState(false)
 
     const leftNavRef = useRef(null)
+    const mainRef = useRef(null)
 
-    const profilePrefix = '/profile'
+    const profilURLArray = ['/profile', '/signet', '/sujets']
     const [isProfile, setIsProfile] = useState(false)
 
     const { url } = usePage()
 
     useEffect(() => {
-        const isInProfil = url.startsWith(profilePrefix)
+        const isInProfil = profilURLArray.some(prefix => url.startsWith(prefix))
         setIsProfile(isInProfil)
     }, [url])
 
-    return(
-        <div className="relative h-screen">
+    useEffect(() => {
+        if (user?.light_mode == false) {
+            document.documentElement.classList.add('dark');
+        } else if (user?.light_mode == true) {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [user?.light_mode]);
+
+    return (
+        <div>
             <Nav
                 setProfilPanel={setProfilPanel}
                 setLeftNav={setLeftNav}
@@ -33,6 +42,7 @@ export default function DefaultLayout({ children }) {
                 profilPanel={profilPanel}
                 icon={user?.icon?.file_name || null}
                 leftNavRef={leftNavRef}
+                mainRef={mainRef}
             />
 
             {/* Left Nav*/}
@@ -45,7 +55,7 @@ export default function DefaultLayout({ children }) {
             {/* Profil Panel*/}
             {profilPanel ? <ProfilPanel setVisibility={setProfilPanel} user={user} /> : null}
 
-            <main>
+            <main className='h-[calc(100vh-64px)]' ref={mainRef}>
                 {React.cloneElement(children, { leftNav })}
             </main>
         </div>

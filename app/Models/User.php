@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class, 'id_role');
+        return $this->belongsTo(Role::class, 'id_role')->select('nom');
     }
 
     public function signet(): HasMany
@@ -70,5 +70,10 @@ class User extends Authenticatable
     public function historique(): HasMany
     {
         return $this->hasMany(Playlist::class, 'id_users')->where('signet', false);
+    }
+
+    public function sujets(): HasMany
+    {
+        return $this->hasMany(Sujet::class, 'id_users');
     }
 }

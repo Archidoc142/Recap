@@ -85,7 +85,7 @@ export default function Login({ status, canResetPassword }) {
                         {canResetPassword && (
                             <Link
                                 href={route('password.request')}
-                                className="underline hover:text-gray-300"
+                                className="underline text-white hover:text-gray-300"
                             >
                                 Vous avez oublié votre mot de passe?
                             </Link>
@@ -97,7 +97,7 @@ export default function Login({ status, canResetPassword }) {
                     </div>
                 </div>
 
-                <p className='text-center mt-8'>Vous n'avez pas encore de comtpe? <span className='font-bold text-[#ff5e00] hover:text-white transition-colors duration-300'><Link href={route('register')}>CRÉER EN UN</Link></span></p>
+                <p className='text-center mt-8'>Vous n'avez pas encore de comtpe? <span className='font-bold text-[#2545af] hover:text-white transition-colors duration-300'><Link href={route('register')}>CRÉER EN UN</Link></span></p>
             </form>
         </div>
     );

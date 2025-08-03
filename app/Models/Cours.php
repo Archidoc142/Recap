@@ -12,7 +12,7 @@ class Cours extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [
-        'nom',
+        'title',
         'id_matiere',
         'id_icon',
     ];

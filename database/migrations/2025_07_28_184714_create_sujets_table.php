@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sujet', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('title');
             $table->json('meta');
             $table->bigInteger('id_etat')->unsigned()->nullable();
             $table->bigInteger('id_users')->unsigned()->nullable();

@@ -11,7 +11,7 @@ class Sujet extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [
-        'nom',
+        'title',
         'meta',
         'id_etat',
         'id_users',

@@ -1,13 +1,29 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\SujetController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\EnsureUserIsLoggedIn;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Accueil');
 })->name('accueil');
+
+Route::controller(UserController::class)->group(function () {
+    Route::post('/toggleLightMode', 'toggleLightMode')->name('toggleLightMode');
+    Route::get('/signet', 'signet')->name('signet')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/sujets', 'sujets')->name('sujets')->middleware(EnsureUserIsLoggedIn::class);
+});
+
+Route::controller(SujetController::class)->group(function () {
+    Route::post('/storeSujet', 'store')->name('storeSujet')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/sujet/{id}', 'show')->name('showSujet')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/editSujet/{id}', 'edit')->name('editSujet')->middleware(EnsureUserIsLoggedIn::class);
+    Route::put('/updateSujet/{id}', 'update')->name('updateSujet')->middleware(EnsureUserIsLoggedIn::class);
+    Route::delete('/deleteSujet/{id}', 'destroy')->name('deleteSujet')->middleware(EnsureUserIsLoggedIn::class);
+});
 
 /* Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -17,10 +33,6 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 }); */
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
