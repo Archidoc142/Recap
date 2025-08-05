@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class, 'id_role')->select('nom');
+        return $this->belongsTo(Role::class, 'id_role');
     }
 
     public function signet(): HasMany

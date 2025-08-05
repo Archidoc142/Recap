@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\sujet;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SujetResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class SujetController extends Controller
 {
@@ -20,9 +22,11 @@ class SujetController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create(int $id)
     {
-        //
+        return Inertia::render('Sujet/ModifierSujet', [
+            'sujet' => new SujetResource(sujet::find($id)),
+        ]);
     }
 
     /**
@@ -45,13 +49,12 @@ class SujetController extends Controller
         $etat = $request->input('id_etat');
         $role = Auth::user()->role;
 
-        if ($etat === 1) {
-            $sujet->id_etat = ($role === 'Administrateur') ? 1 : 3;
+        if ($etat == 1) {
+            $sujet->id_etat = ($role == 'Administrateur') ? 1 : 3;
         } else {
             $sujet->id_etat = 2;
         }
 
-        $sujet->id_etat = $request->input('id_etat', 2);
         $sujet->couleur = $request->input('couleur');
         $sujet->created_at = now();
         $sujet->save();
@@ -62,9 +65,11 @@ class SujetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(sujet $sujet)
+    public function show(int $id)
     {
-        //
+        return Inertia::render('Sujet/Sujet', [
+            'sujet' => new SujetResource(sujet::find($id)),
+        ]);
     }
 
     /**
@@ -78,16 +83,34 @@ class SujetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, sujet $sujet)
+    public function update(int $id, Request $request)
     {
-        //
+        $sujet = sujet::findOrFail($id);
+        $existingMeta = json_decode($sujet->meta, true) ?: [];
+
+        if ($request->has('type')) {
+            $existingMeta['type'] = $request->input('type');
+        }
+
+        if ($request->has('content') && is_array($request->input('content'))) {
+            $existingMeta['content'] = $request->input('content');
+        }
+
+        $sujet->meta = json_encode($existingMeta);
+        $sujet->updated_at = now();
+        $sujet->save();
+
+        return redirect()->back()->with('success', 'Sujet mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(sujet $sujet)
+    public function destroy(int $id)
     {
-        //
+        $sujet = sujet::findOrFail($id);
+        $sujet->delete();
+
+        return redirect()->route('sujets')->with('success', 'Sujet supprimé avec succès.');
     }
 }

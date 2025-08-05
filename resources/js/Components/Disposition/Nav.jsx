@@ -3,10 +3,10 @@ import { Link } from '@inertiajs/react';
 import { gsap } from "gsap";
 import { useEffect } from "react";
 
-export default function Nav({ leftNavRef, mainRef, setProfilPanel, setLeftNav, leftNav, profilPanel, icon }) {
+export default function Nav({ leftNavRef, mainRef, setProfilPanel, setLeftNav, leftNav, profilPanel, icon, isInModifier }) {
 
     function toggleNav() {
-        setLeftNav(!leftNav)
+        if (!isInModifier) setLeftNav(!leftNav)
     }
 
     useEffect(() => {
@@ -42,7 +42,15 @@ export default function Nav({ leftNavRef, mainRef, setProfilPanel, setLeftNav, l
                 {/* Nom du site*/}
                 <Link
                     href="/"
-                    className="unselectable lexend text-[28px] text-[#2545af] hover:text-white hover:bg-[#14151a] h-full center px-4"
+                    className="unselectable lexend text-[28px] hover:bg-[#14151a] h-full center px-4"
+                    style={{
+                        background: "linear-gradient(to right, #1e40af, #22c55e)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.WebkitTextFillColor = "white"}
+                    onMouseLeave={e => e.currentTarget.style.WebkitTextFillColor = "transparent"}
                 >
                     RE:CAP
                 </Link>

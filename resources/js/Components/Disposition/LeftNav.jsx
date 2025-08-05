@@ -1,7 +1,8 @@
 import { useRef, useImperativeHandle, forwardRef, useState } from "react";
 import ItemPanel from "../UI/ItemPanel";
+import DraggableItem from "../UI/DraggableItem";
 
-const LeftNav = forwardRef(({ setVisibility, isProfile }, ref) => {
+const LeftNav = forwardRef(({ setVisibility, isProfile, isInClass, isInModifier }, ref) => {
 
     const [secondaryPanel, setSecondaryPanel] = useState(false)
 
@@ -12,7 +13,11 @@ const LeftNav = forwardRef(({ setVisibility, isProfile }, ref) => {
     }));
 
     return (
-        <div ref={divRef} className="fixed h-screen z-40 w-0 bg-[#14151a] overflow-x-hidden font-bold whitespace-nowrap text-white">
+        <div 
+            ref={divRef} 
+            className={"fixed h-[calc(100vh-64px)] z-40 w-72 bg-[#14151a] font-bold whitespace-nowrap text-white " 
+                        + (!isInModifier ? "overflow-hidden" : "overflow-visible flex flex-col justify-between")}
+        >
             {
                 isProfile ?
                     <>  {/* Version Profil*/}
@@ -36,8 +41,36 @@ const LeftNav = forwardRef(({ setVisibility, isProfile }, ref) => {
                         </ItemPanel>
                     </>
 
-                    :
+                    : isInClass ?
+                    <> {/* Version Classe*/}
+                        <h3 className="m-4 text-xl">Classe</h3>
+                    </>
 
+                    : isInModifier ?
+                    <> {/* Version Modifier*/}
+                        <div>
+                            <h3 className="m-4 text-xl">Ajouter vos blocs</h3>
+
+                            <hr className="border-gray-500 m-2" />
+                            <div>
+                                <DraggableItem text="Titre" type="title" iconId={1} />
+                                <DraggableItem text="Texte" type="text" iconId={2}/>
+                                <DraggableItem text="Liste" type="list" iconId={3}/>
+                                <DraggableItem text="Image" type="image" iconId={4}/>
+                                <DraggableItem text="Vidéo" type="video" iconId={5}/>
+                                <DraggableItem text="Section" type="div" iconId={6}/>
+                                <DraggableItem text="Séparateur" type="hr" iconId={7}/>
+                                {/*<DraggableItem text="Code" type="code" iconId={8}/>*/}
+                            </div>
+                        </div>
+
+                        <ItemPanel route="/sujets" onClick={() => setVisibility(false)} className="text-gray-400 hover:text-white flex items-center gap-4 group">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round"><path d="M15 3h6v18h-6M10 17l5-5-5-5M13.8 12H3"/></svg>
+                            <p>Revenir à mes sujets</p>
+                        </ItemPanel>
+                    </>
+
+                    :
                     <> {/* Version Générale*/}
                         <div className="flex flex-col">
                             <ItemPanel route="/search/populaire" onClick={() => setVisibility(false)} className="text-gray-400 hover:text-white flex items-center gap-4 group">

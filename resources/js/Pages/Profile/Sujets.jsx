@@ -1,6 +1,8 @@
 import PrimaryButton from "@/Components/Breeze/PrimaryButton";
 import LoadingScreen from "@/Components/System/LoadingScreen"
+import PaginationBar from "@/Components/UI/PaginationBar";
 import PopUp from "@/Components/UI/PopUp";
+import SujetBloc from "@/Components/UI/SujetBloc";
 import { Head, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
@@ -28,7 +30,6 @@ export default function Sujets({ sujets }) {
         });
     };
 
-    console.log(sujets)
 
     return (
         <div className="h-full relative">
@@ -91,7 +92,7 @@ export default function Sujets({ sujets }) {
                     <div className="mb-4">
                         <p className="text-lg">Couleur : <span className="font-bold">{data.couleur}</span></p>
                     </div>
-                    
+
                     <div className="my-4 font-bold text-transparent">
                         <div>
                             <button type="button" className="bg-[#00A6FF] hover:text-white py-2 w-1/6 rounded-tl-lg" onClick={() => setData('couleur', '#00A6FF')}>00A6FF</button>
@@ -130,14 +131,16 @@ export default function Sujets({ sujets }) {
             <hr className="dark:border-white border-black mx-4 border-2 rounded-full" />
 
             {
-                sujets.length > 0 ?
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-                        {sujets.map(sujet => (
-                            <div key={sujet.id} className="border p-4 rounded-lg">
-                                <h2 className="text-2xl font-bold">{sujet.title}</h2>
-                            </div>
-                        ))}
-                    </div>
+                sujets.data.length > 0 ?
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+                            {sujets.data.map((sujet) => (
+                                <SujetBloc key={sujet.id} sujet={sujet} canModify={true} />
+                            ))}
+                        </div>
+
+                        <PaginationBar className="absolute top-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2" links={sujets.meta.links} />
+                    </>
                     :
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl dark:text-gray-500">Aucun sujet</div>
             }

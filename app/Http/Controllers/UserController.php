@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\SujetsResource;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -29,7 +29,7 @@ class UserController extends Controller
     public function sujets()
     {
         return Inertia::render('Profile/Sujets', [
-            'sujets' => Auth::user()->sujets,
+            'sujets' => SujetsResource::collection(Auth::user()->sujets()->paginate(12)),
         ]);
     }
 }

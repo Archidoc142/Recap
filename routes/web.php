@@ -20,9 +20,9 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(SujetController::class)->group(function () {
     Route::post('/storeSujet', 'store')->name('storeSujet')->middleware(EnsureUserIsLoggedIn::class);
     Route::get('/sujet/{id}', 'show')->name('showSujet')->middleware(EnsureUserIsLoggedIn::class);
-    Route::get('/editSujet/{id}', 'edit')->name('editSujet')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/modifier/sujet/{id}', 'create')->name('createSujet')->middleware(EnsureUserIsLoggedIn::class);
     Route::put('/updateSujet/{id}', 'update')->name('updateSujet')->middleware(EnsureUserIsLoggedIn::class);
-    Route::delete('/deleteSujet/{id}', 'destroy')->name('deleteSujet')->middleware(EnsureUserIsLoggedIn::class);
+    Route::delete('/delete/sujet/{id}', 'destroy')->name('deleteSujet')->middleware(EnsureUserIsLoggedIn::class);
 });
 
 /* Route::get('/', function () {
