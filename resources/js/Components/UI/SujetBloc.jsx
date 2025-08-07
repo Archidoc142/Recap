@@ -1,6 +1,12 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
 export default function SujetBloc({ sujet, canModify = false }) {
+
+    const handleModify = (e) => {
+        e.preventDefault();
+        router.visit(`/modifier/sujet/${sujet.id}`);
+    };
+
     return (
         <Link
             className="border-2 border-gray-500 rounded-lg group hover:bg-gray-800 hover:border-gray-200 cursor-pointer"
@@ -14,9 +20,9 @@ export default function SujetBloc({ sujet, canModify = false }) {
 
                 {
                     canModify ?
-                        <Link href={`/modifier/sujet/${sujet.id}`}>
+                        <button onClick={(e) => handleModify(e)}>
                             <svg className="hover:stroke-gray-500" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
-                        </Link> : null
+                        </button> : null
                 }
             </div>
 

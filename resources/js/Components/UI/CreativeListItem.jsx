@@ -14,8 +14,8 @@ export default function CreativeListItem({ content, handleChange, onClick }) {
     }
 
     function updateContent(updatedItem) {
-        setListItems((prevItems) => 
-            prevItems.map((item) => 
+        setListItems((prevItems) =>
+            prevItems.map((item) =>
                 item.id === updatedItem.id ? { ...item, ...updatedItem } : item
             )
         );
@@ -36,12 +36,12 @@ export default function CreativeListItem({ content, handleChange, onClick }) {
 
             {listItems.map((item, index) => (
                 <div key={index} className="flex items-center gap-2 mb-4">
-                    <input 
-                        value={item.text || ""} 
-                        onChange={(e) => updateContent({ id: item.id, text: e.target.value })} 
+                    <input
+                        value={item.text || ""}
+                        onChange={(e) => updateContent({ id: item.id, text: e.target.value })}
                         className="bg-transparent border-dashed border-2 w-full text-white"
                         onClick={onClick}
-                        type="text" 
+                        type="text"
                     />
 
                     {
@@ -54,10 +54,14 @@ export default function CreativeListItem({ content, handleChange, onClick }) {
                     }
 
 
-                    {/* Bouton d'ajout*/}
-                    <button onClick={addItem} className="border-2 p-2 border-gray-500 hover:bg-gray-700 hover:text-white">
-                        <svg className="hover:stroke-white" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="gray" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    </button>
+                    {
+                        /* Bouton d'ajout*/
+                        index === listItems.length - 1 && (
+                            <button onClick={addItem} className="border-2 p-2 border-gray-500 hover:bg-gray-700 hover:text-white">
+                                <svg className="hover:stroke-white" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="gray" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </button>
+                        )
+                    }
                 </div>
             ))}
 

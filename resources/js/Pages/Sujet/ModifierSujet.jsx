@@ -9,7 +9,7 @@ export default function ModifierSujet({ sujet, droppedItem, setDroppedItem }) {
 
     const initialContent = (() => {
         if (sujet.data.meta) {
-            const meta = JSON.parse(sujet.data.meta);
+            const meta = sujet.data.meta;
             return meta.content && Array.isArray(meta.content) ? meta.content : [];
         }
         return [];
@@ -97,7 +97,6 @@ export default function ModifierSujet({ sujet, droppedItem, setDroppedItem }) {
 
                         <DroppableBox />
                         <button onClick={handleSave} className="bg-[#14151a] hover:bg-gray-700 border-[3px] py-4 w-full border-[#5a5a5c] mt-4 text-lg lexend">Sauvegarder</button>
-                        <button onClick={() => console.log(content)} className="bg-[#14151a] hover:bg-gray-700 border-[3px] py-4 w-full border-[#5a5a5c] mt-4">Console.log()</button>
                     </div>
 
                     <StyleBox

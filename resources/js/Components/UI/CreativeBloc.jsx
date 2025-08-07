@@ -86,17 +86,48 @@ export default function CreativeBloc({ type, setContent, content, id, onClick })
                                         <button onClick={deleteItem} className="text-red-600 hover:text-red-400 underline">supprimer</button>
                                     </div>
 
-                                    <input 
+                                    <input
                                         onClick={onClick}
                                         value={content.find(item => item.id === id)?.link || ""}
                                         className="w-full border-2 bg-transparent text-white border-dashed mb-4 flex justify-center"
                                         type="text"
+                                        onChange={(e) => { handleChange(e.target.value, "link"); }}
                                     />
                                 </>
 
                                 : type == "video" ?
-                                    <> </>
-                                    : null
+                                    <>
+                                        <div className="flex justify-between items-center pb-1">
+                                            <p>Vidéo - #{id} <span className="text-sm text-gray-500">(Format Embed)</span></p>
+                                            <button onClick={deleteItem} className="text-red-600 hover:text-red-400 underline">supprimer</button>
+                                        </div>
+
+                                        <input
+                                            onClick={onClick}
+                                            value={content.find(item => item.id === id)?.embed || ""}
+                                            className="w-full border-2 bg-transparent text-white border-dashed mb-4 flex justify-center"
+                                            type="text"
+                                            onChange={(e) => { handleChange(e.target.value, "embed"); }}
+                                        />
+                                    </>
+                                    : type == "hr" ?
+                                        <>
+                                            <div className="flex justify-between items-center pb-1">
+                                                <p>Ligne de séparation - #{id}</p>
+                                                <button onClick={deleteItem} className="text-red-600 hover:text-red-400 underline">supprimer</button>
+                                            </div>
+
+                                            <hr className="border-t-2 border-dashed border-gray-500 mb-4" />
+                                        </>
+                                        : type == "spacer" ?
+                                            <>
+                                                <div className="flex justify-between items-center pb-1">
+                                                    <p>Espaceur - #{id}</p>
+                                                    <button onClick={deleteItem} className="text-red-600 hover:text-red-400 underline">supprimer</button>
+                                                </div>
+
+                                                <button onClick={onClick} className="bg-[#14151a] hover:bg-gray-700 border-[3px] py-2 w-full border-[#5a5a5c] mb-4 text-lg">Style de l'espaceur</button>
+                                            </> : null
             }
         </>
     );

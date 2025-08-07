@@ -58,8 +58,8 @@ const LeftNav = forwardRef(({ setVisibility, isProfile, isInClass, isInModifier 
                                 <DraggableItem text="Liste" type="list" iconId={3}/>
                                 <DraggableItem text="Image" type="image" iconId={4}/>
                                 <DraggableItem text="Vidéo" type="video" iconId={5}/>
-                                <DraggableItem text="Section" type="div" iconId={6}/>
-                                <DraggableItem text="Séparateur" type="hr" iconId={7}/>
+                                <DraggableItem text="Séparateur" type="hr" iconId={6}/>
+                                <DraggableItem text="Espaceur" type="spacer" iconId={7}/>
                                 {/*<DraggableItem text="Code" type="code" iconId={8}/>*/}
                             </div>
                         </div>

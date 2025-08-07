@@ -23,7 +23,6 @@ export default function StyleBox({ setContent, content, id }) {
                     <div className="p-4 pt-0">
                         <p>Niveau du titre :
                             <select className="bg-gray-800 w-full text-white border-2 border-gray-600 rounded-md mt-1 p-2 " onChange={(e) => updateBlockStyle(e.target.value, 'level')} value={selectedBlock?.level || '1'}>
-                                <option value="1" className="bg-gray-800">1</option>
                                 <option value="2" className="bg-gray-800">2</option>
                                 <option value="3" className="bg-gray-800">3</option>
                                 <option value="4" className="bg-gray-800">4</option>
@@ -39,8 +38,30 @@ export default function StyleBox({ setContent, content, id }) {
                             type="text"
                             value={selectedBlock?.legend || ''}
                             onChange={(e) => updateBlockStyle(e.target.value, 'legend')}
+                            className="bg-gray-800 w-full text-white border-2 border-gray-600 rounded-md mt-1 p-2 mb-2"
+                        />
+
+                        <p>Taille <span className="text-gray-500 text-sm">(en %)</span> :</p>
+                        <input
+                            type="number"
+                            min={0}
+                            max={100}
+                            step={5}
+                            value={selectedBlock?.width || ''}
+                            onChange={(e) => updateBlockStyle(e.target.value, 'width')}
                             className="bg-gray-800 w-full text-white border-2 border-gray-600 rounded-md mt-1 p-2"
                         />
+                    </div>
+                );
+            case 'spacer':
+                return (
+                    <div className="p-4 pt-0">
+                        <p>Taille d'espacement :</p>
+                        <select value={selectedBlock?.spacing || 'my-4'} onChange={(e) => updateBlockStyle(e.target.value, 'spacing')} className="bg-gray-800 w-full text-white border-2 border-gray-600 rounded-md mt-1 p-2">
+                            <option value="my-4" className="bg-gray-800">Petit</option>
+                            <option value="my-8" className="bg-gray-800">Moyen</option>
+                            <option value="my-16" className="bg-gray-800">Grand</option>
+                        </select>
                     </div>
                 );
             default:

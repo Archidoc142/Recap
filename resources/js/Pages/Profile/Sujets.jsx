@@ -139,7 +139,7 @@ export default function Sujets({ sujets }) {
                             ))}
                         </div>
 
-                        <PaginationBar className="absolute top-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2" links={sujets.meta.links} />
+                        <PaginationBar links={sujets.meta.links} />
                     </>
                     :
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl dark:text-gray-500">Aucun sujet</div>

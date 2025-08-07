@@ -22,7 +22,7 @@ function getPaginationLinks(current, last) {
     return pages;
 }
 
-export default function PaginationBar({ links, className }) {
+export default function PaginationBar({ links }) {
     const current = Number(links.find(link => link.active)?.label);
     const last = Number(links[links.length - 2]?.label);
 
@@ -33,7 +33,7 @@ export default function PaginationBar({ links, className }) {
     const nextLink = links[links.length - 1].url || null;
 
     return (
-        <div className={"text-center flex justify-center items-center gap-1 unselectable " + className}>
+        <div className="text-center flex justify-center items-center gap-1 unselectable mt-12">
             {/* Previous button */}
             {
                 prevLink ? (

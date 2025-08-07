@@ -6,6 +6,18 @@ import Dropdown from "../Breeze/Dropdown";
 
 export default function ProfilPanel({ setVisibility, user }) {
 
+    const handleToggleLightMode = () => {
+        const newLightMode = !user?.light_mode;
+
+        if (newLightMode) {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+
+        setVisibility(false)
+    };
+
     return (
         <>
             <div className="bg-[#14151a] fixed right-0 z-50 font-bold rounded-bl-lg overflow-hidden text-white">
@@ -26,7 +38,7 @@ export default function ProfilPanel({ setVisibility, user }) {
 
                             <hr className="border-gray-500 mb-2" />
 
-                            <ItemPanelPost route={"/toggleLightMode"} onClickFunction={() => setVisibility(false)} className="text-gray-400 hover:text-white flex items-center gap-4 group">
+                            <ItemPanelPost route={"/toggleLightMode"} onClickFunction={handleToggleLightMode} className="text-gray-400 hover:text-white flex items-center gap-4 group">
                                 {user?.light_mode ? 
                                     <svg className="group-hover:stroke-gray-500" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#d9d9d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                                   : <svg className="group-hover:stroke-gray-500" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#d9d9d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>

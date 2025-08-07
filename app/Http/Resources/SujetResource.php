@@ -17,7 +17,7 @@ class SujetResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
-            "meta" => $this->meta,
+            "meta" => json_decode($this->meta),
             "etat" => $this->etat->nom,
             "author" => $this->author->name,
             "chapitre" => $this->chapitre->title ?? null,

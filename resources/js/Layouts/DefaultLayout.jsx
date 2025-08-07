@@ -15,10 +15,10 @@ export default function DefaultLayout({ children }) {
     const mainRef = useRef(null);
 
     const [isProfile, setIsProfile] = useState(false);
-    const profilURLArray = ['/profile', '/signet', '/sujets'];
+    const profilURLArray = ['/profile', '/signet', '/sujets', '/sujet'];
 
     const [isClass, setIsClass] = useState(false);
-    const classURL = '/sujet';
+    const classURL = '/cours';
 
     const [isModifier, setIsModifier] = useState(false);
     const modifierURL = '/modifier/sujet';
@@ -71,7 +71,7 @@ export default function DefaultLayout({ children }) {
             {/* Profil Panel*/}
             {profilPanel ? <ProfilPanel setVisibility={setProfilPanel} user={user} /> : null}
 
-            <main className='pl-72 h-[calc(100vh-64px)]' ref={mainRef}>
+            <main className='pl-72 min-h-[calc(100vh-64px)]' ref={mainRef}>
                 {children}
             </main>
         </div>
