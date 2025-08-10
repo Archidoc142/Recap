@@ -13,9 +13,17 @@ class Cours extends Model
     public $timestamps = false;
     protected $fillable = [
         'title',
+        'ordre',
+        'couleur',
         'id_matiere',
+        'id_users',
         'id_icon',
     ];
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'id_users');
+    }
 
     public function matiere(): BelongsTo
     {

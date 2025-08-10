@@ -1,20 +1,20 @@
 import { Link, router } from "@inertiajs/react";
 
-export default function SujetBloc({ sujet, canModify = false }) {
+export default function ChapitreBloc({ chapitre, canModify = false }) {
 
     const handleModify = (e) => {
         e.preventDefault();
-        router.visit(`/modifier/sujet/${sujet.id}`);
+        router.visit(`/chapitre/modifier/${chapitre.id}`);
     };
 
     return (
         <Link
             className="border-2 border-gray-500 rounded-lg group hover:bg-gray-800 hover:border-gray-200 cursor-pointer"
-            href={`/sujet/${sujet.id}`}
+            href={`/chapitre/${chapitre.id}`}
         >
             <div className="px-4 pt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2 max-w-[90%]">
-                    <h2 className="text-2xl font-bold whitespace-nowrap overflow-hidden text-ellipsis">{sujet.title}</h2>
+                    <h2 className="text-2xl font-bold whitespace-nowrap overflow-hidden text-ellipsis">{chapitre.title}</h2>
                     <button><svg className="group-hover:stroke-white" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="gray" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg></button>
                 </div>
 
@@ -27,16 +27,16 @@ export default function SujetBloc({ sujet, canModify = false }) {
             </div>
 
             <div className="flex items-center justify-between px-4 py-2">
-                <p className={"max-w-[55%] text-gray-400 font-semibold whitespace-nowrap overflow-hidden text-ellipsis " + (!canModify ? "!max-w-full" : null)}>{sujet.chapitre_title ? `Chapitre : ${sujet.chapitre_title}` : "Non affilié à un chapitre"}</p>
+                <p className={"max-w-[55%] text-gray-400 font-semibold whitespace-nowrap overflow-hidden text-ellipsis " + (!canModify ? "!max-w-full" : null)}>{chapitre.cours ? `Cours : ${chapitre.cours}` : "Non affilié à un cours"}</p>
 
                 {
                     canModify ?
-                        <p className="text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">{sujet.etat}</p>
+                        <p className="text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">{chapitre.etat}</p>
                         : null
                 }
             </div>
 
-            <div className="h-2 w-full rounded-b-md" style={{ backgroundColor: sujet.couleur }} />
+            <div className="h-2 w-full rounded-b-md" style={{ backgroundColor: chapitre.couleur }} />
         </Link>
     );
 }

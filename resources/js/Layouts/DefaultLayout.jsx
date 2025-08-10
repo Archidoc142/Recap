@@ -15,10 +15,10 @@ export default function DefaultLayout({ children }) {
     const mainRef = useRef(null);
 
     const [isProfile, setIsProfile] = useState(false);
-    const profilURLArray = ['/profile', '/signet', '/sujets', '/sujet'];
+    const profilURLArray = ['/profile', '/signet', '/sujet', '/sujets', '/chapitre', '/chapitres', '/cours'];
 
     const [isClass, setIsClass] = useState(false);
-    const classURL = '/cours';
+    const classURL = '/classe';
 
     const [isModifier, setIsModifier] = useState(false);
     const modifierURL = '/modifier/sujet';

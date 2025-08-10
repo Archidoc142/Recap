@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SujetsResource extends JsonResource
+class ChapitreResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +17,11 @@ class SujetsResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
-            "meta" => collect(json_decode($this->meta, true))->except('content'),
-            "etat" => $this->etat->nom,
-            "chapitre" => $this->chapitre->id ?? null,
-            "chapitre_title" => $this->chapitre->title ?? null,
+            "author" => $this->author->name,
+            "cours" => $this->cours->title ?? null,
             "couleur" => $this->couleur,
             "ordre" => $this->ordre,
+            "nb_sujets" => $this->getNbCours(),
         ];
     }
 }

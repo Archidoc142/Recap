@@ -17,6 +17,7 @@ class Sujet extends Model
         'id_users',
         'id_chapitre',
         'couleur',
+        'ordre',
     ];
 
     public function author(): BelongsTo

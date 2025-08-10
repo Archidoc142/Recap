@@ -20,7 +20,7 @@ class SujetResource extends JsonResource
             "meta" => json_decode($this->meta),
             "etat" => $this->etat->nom,
             "author" => $this->author->name,
-            "chapitre" => $this->chapitre->title ?? null,
+            "chapitre" => $this->chapitre ?? null,
             "couleur" => $this->couleur,
         ];
     }

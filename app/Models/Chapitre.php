@@ -13,8 +13,16 @@ class Chapitre extends Model
     public $timestamps = false;
     protected $fillable = [
         'title',
+        'ordre',
+        'couleur',
+        'id_users',
         'id_cours',
     ];
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'id_users');
+    }
 
     public function cours(): BelongsTo
     {
@@ -24,5 +32,10 @@ class Chapitre extends Model
     public function sujets(): HasMany
     {
         return $this->hasMany(Sujet::class, 'id_chapitre');
+    }
+
+    public function getNbCours() : int
+    {
+        return $this->sujets()->count();
     }
 }

@@ -2,7 +2,7 @@ import BuildingBlockArticle from "@/Components/UI/BuildingBlockArticle";
 import BuildingBlockQuiz from "@/Components/UI/BuildingBlockQuiz";
 import { Head } from "@inertiajs/react";
 
-export default function Sujet({ sujet }) {
+export default function Chapitre({ sujet }) {
     return (
         <>
             <Head title={sujet.data.title} />
@@ -17,10 +17,10 @@ export default function Sujet({ sujet }) {
 
                 {
                     sujet.data.meta?.type === "Article" ?
-                        sujet.data.meta?.content?.map((item, index) => {
+                        sujet.data.meta?.content.map((item, index) => {
                             return <BuildingBlockArticle key={index} content={item} />
                         }) :
-                        sujet.data.meta?.content?.map((item, index) => {
+                        sujet.data.meta?.content.map((item, index) => {
                             return <BuildingBlockQuiz key={index} content={item} />
                     })
                 }

@@ -76,4 +76,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Sujet::class, 'id_users');
     }
+
+    public function chapitres(): HasMany
+    {
+        return $this->hasMany(Chapitre::class, 'id_users');
+    }
+
+    public function cours(): HasMany
+    {
+        return $this->hasMany(Cours::class, 'id_users');
+    }
 }

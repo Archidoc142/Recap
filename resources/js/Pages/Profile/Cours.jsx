@@ -6,7 +6,7 @@ import SujetBloc from "@/Components/UI/SujetBloc";
 import { Head, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function Sujets({ sujets }) {
+export default function Cours({ cours }) {
 
     const [isLoading, setIsLoading] = useState(true)
     const [loadingProgress, setLoadingProgress] = useState(0)
@@ -33,7 +33,7 @@ export default function Sujets({ sujets }) {
 
     return (
         <div className="relative h-full min-h-[calc(100vh-64px)]">
-            <Head title="Sujets" />
+            <Head title="Cours" />
             {isLoading && <LoadingScreen setIsLoading={setIsLoading} setLoadingProgress={setLoadingProgress} progress={loadingProgress} />}
 
             <PopUp

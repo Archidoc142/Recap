@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChapitreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SujetController;
 use App\Http\Controllers\UserController;
@@ -15,6 +16,8 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/toggleLightMode', 'toggleLightMode')->name('toggleLightMode');
     Route::get('/signet', 'signet')->name('signet')->middleware(EnsureUserIsLoggedIn::class);
     Route::get('/sujets', 'sujets')->name('sujets')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/chapitres', 'chapitres')->name('chapitres')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/cours', 'cours')->name('cours')->middleware(EnsureUserIsLoggedIn::class);
 });
 
 Route::controller(SujetController::class)->group(function () {
@@ -25,14 +28,13 @@ Route::controller(SujetController::class)->group(function () {
     Route::delete('/delete/sujet/{id}', 'destroy')->name('deleteSujet')->middleware(EnsureUserIsLoggedIn::class);
 });
 
-/* Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-}); */
+Route::controller(ChapitreController::class)->group(function () {
+    Route::post('/storeChapitre', 'store')->name('storeChapitre')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/chapitre/{id}', 'show')->name('showChapitre')->middleware(EnsureUserIsLoggedIn::class);
+    Route::get('/chapitre/modifier/{id}', 'create')->name('createChapitre')->middleware(EnsureUserIsLoggedIn::class);
+    Route::put('/updateChapitre/{id}', 'update')->name('updateChapitre')->middleware(EnsureUserIsLoggedIn::class);
+    Route::delete('/delete/chapitre/{id}', 'destroy')->name('deleteChapitre')->middleware(EnsureUserIsLoggedIn::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

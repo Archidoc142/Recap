@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->json('meta');
+            $table->integer('ordre')->default(0);
             $table->bigInteger('id_etat')->unsigned()->nullable();
             $table->bigInteger('id_users')->unsigned()->nullable();
             $table->bigInteger('id_chapitre')->unsigned()->nullable();

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ChapitreResource;
+use App\Http\Resources\CoursResource;
 use App\Http\Resources\SujetsResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +33,20 @@ class UserController extends Controller
     {
         return Inertia::render('Profile/Sujets', [
             'sujets' => SujetsResource::collection(Auth::user()->sujets()->paginate(12)),
+        ]);
+    }
+
+    public function chapitres()
+    {
+        return Inertia::render('Profile/Chapitres', [
+            'chapitres' => ChapitreResource::collection(Auth::user()->chapitres()->paginate(12)),
+        ]);
+    }
+
+    public function cours()
+    {
+        return Inertia::render('Profile/Cours', [
+            'cours' => CoursResource::collection(Auth::user()->cours()->paginate(12)),
         ]);
     }
 }
